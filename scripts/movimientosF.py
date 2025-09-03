@@ -15,7 +15,7 @@ else:
     print("No me diste ningún nombre")
 
 print(f"Se van a procesar los movimientos de la siguiente fecha: {nombre}")
-dfMovimientos = ss.read.format("csv").options(header='true', inferSchema='true', delimiter=',').load(f"documentos/movimientos{nombre}.csv")
+dfMovimientos = ss.read.format("csv").options(header='true', inferSchema='true', delimiter=',').load(f"/home/jrodarte/Proyectos/prestadero/documentos/movimientos{nombre}.csv")
 
 
 # Datos de conexión
@@ -81,3 +81,4 @@ except Exception as inst:
     print(inst.args)     # arguments stored in .args
     print(inst)   
 
+ss.stop()
