@@ -5,6 +5,7 @@
 
 
 import psycopg2
+import json
 
 
 # In[2]:
@@ -13,9 +14,20 @@ import psycopg2
 # Datos de conexión
 host = "localhost"
 dbname = "postgres"
-user = "jrodarte"
-password = "roma1993_"
 port = 5432  # Puerto por defecto
+# Datos de conexión
+try:
+    with open("/home/jrodarte/Proyectos/prestadero/config/credenciales.json", "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    if data["activo"] == True:
+        user = data["usuario"]
+        password = data["pass"]
+except Exception as inst:
+    print(type(inst))    # the exception type
+    print(inst.args)     # arguments stored in .args
+    print(inst) 
+
 
 
 # In[8]:

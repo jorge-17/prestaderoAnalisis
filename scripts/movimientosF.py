@@ -7,6 +7,7 @@ from pyspark.sql.functions import sum, avg,col,first,when,udf,regexp_replace,to_
 from pyspark.sql.types import StringType, DoubleType, ArrayType
 import re
 import sys
+import json
 ss = SparkSession.builder.config("spark.jars", "/home/jrodarte/postgresql-42.7.3.jar").getOrCreate()
 
 if len(sys.argv) > 1:
@@ -19,8 +20,17 @@ dfMovimientos = ss.read.format("csv").options(header='true', inferSchema='true',
 
 
 # Datos de conexión
-user = "jrodarte"
-password = "roma1993_"
+try:
+    with open("/home/jrodarte/Proyectos/prestadero/config/credenciales.json", "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    if data["activo"] == True:
+        user = data["usuario"]
+        password = data["pass"]
+except Exception as inst:
+    print(type(inst))    # the exception type
+    print(inst.args)     # arguments stored in .args
+    print(inst) 
 
 try:
     dfTipoMovimientos = ss.read.format("jdbc") \
