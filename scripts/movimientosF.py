@@ -3,7 +3,7 @@
 
 
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import sum, avg,col,first,when,udf,regexp_replace,to_timestamp
+from pyspark.sql.functions import sum, avg,col,first,when,udf,regexp_replace,to_timestamp,trim,split,when,size
 from pyspark.sql.types import StringType, DoubleType, ArrayType
 import re
 import sys
@@ -58,6 +58,10 @@ dfMovimientos = dfMovimientos.toDF(*nuevosNombresMov)
 dfMovimientos = dfMovimientos.withColumn('feoperacion', to_timestamp(col("feoperacion"), "dd/MM/yyyy HH:mm:ss"))
 dfMovimientos = dfMovimientos.withColumn('importeS', limpiarImpoUDF(col("importe")))
 dfMovimientos = dfMovimientos.withColumn('importe', col("importeS").cast(DoubleType())).drop("importeS")
+dfMovimientos = dfMovimientos.withColumn("nombre_usuario_solicitante",
+    when(size(split(col("referencia"), ":")) > 1, trim(split(col("referencia"), ":").getItem(1)))
+    .otherwise(None)
+)
 dfDetalleMovimiento = dfDetalleMovimiento.toDF(*nuevosNombresDetMov)
 
 dfMovimientos = dfMovimientos.join(dfTipoMovimientos, dfMovimientos.movimiento == dfTipoMovimientos.tipomovimiento, "inner")
