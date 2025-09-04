@@ -5,9 +5,9 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import sum, avg,col,first,when,udf,regexp_replace,to_timestamp,trim,split,when,size
 from pyspark.sql.types import StringType, DoubleType, ArrayType
-import re
-import sys
-import json
+import re,sys,json,time
+
+inicio = time.time()
 ss = SparkSession.builder.config("spark.jars", "/home/jrodarte/postgresql-42.7.3.jar").getOrCreate()
 
 if len(sys.argv) > 1:
@@ -96,3 +96,5 @@ except Exception as inst:
     print(inst)   
 
 ss.stop()
+fin = time.time()
+print(f"Tiempo de ejecución: {fin - inicio:.2f} segundos")

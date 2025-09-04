@@ -7,8 +7,7 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import sum, avg,col,first,when,udf,regexp_replace,to_timestamp
 from pyspark.sql.types import StringType, DoubleType, ArrayType
-import re
-import json
+import re,json
 ss = SparkSession.builder.config("spark.jars", "/home/jrodarte/postgresql-42.7.3.jar").getOrCreate()
 
 

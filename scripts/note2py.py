@@ -1,5 +1,4 @@
-import nbformat
-import sys
+import nbformat,sys
 from nbconvert import PythonExporter
 
 if len(sys.argv) > 1:

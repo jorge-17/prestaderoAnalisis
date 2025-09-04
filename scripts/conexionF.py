@@ -4,8 +4,7 @@
 # In[1]:
 
 
-import psycopg2
-import json
+import psycopg2,json
 
 
 # In[2]:
