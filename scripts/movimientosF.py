@@ -47,7 +47,7 @@ except Exception as inst:
     print(inst)   
 
 def limpiarImporte(importe):
-    return importe.replace("$", "").replace(",", "")
+    return re.sub(r"[^0-9.]", "", importe)
 
 limpiarImpoUDF = udf(limpiarImporte, StringType())
 
@@ -75,9 +75,8 @@ dfMovimientos = dfMovimientos.withColumn("nombre_usuario_solicitante",
 dfDetalleMovimiento = dfDetalleMovimiento.toDF(*nuevosNombresDetMov)
 
 dfMovimientos = dfMovimientos.join(dfTipoMovimientos, dfMovimientos.movimiento == dfTipoMovimientos.tipomovimiento, "inner")
-dfMovimientos = dfMovimientos.drop('tipomovimiento').drop('movimiento')
-conteoMovimientos = dfMovimientos.count()
-print(f"Se finaliza el procesamiento de {conteoMovimientos} movimientos...")
+dfMovimientos = dfMovimientos.drop('tipomovimiento','movimiento')
+print(f"Se finaliza el procesamiento de {dfMovimientos.count()} movimientos...")
 
 try:
     dfMovimientos.write \
