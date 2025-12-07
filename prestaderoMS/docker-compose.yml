@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: jrodarte
+      POSTGRES_PASSWORD: roma1993_
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build:
+      context: ./backend
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
+      SPRING_DATASOURCE_USERNAME: jrodarte
+      SPRING_DATASOURCE_PASSWORD: roma1993_
+
+volumes:
+  pgdata:
