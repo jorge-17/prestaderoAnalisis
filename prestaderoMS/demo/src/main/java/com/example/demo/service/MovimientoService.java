@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Movimiento;
+import com.example.demo.model.Movimientos;
 import com.example.demo.repository.MovimientoRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ public class MovimientoService {
         this.repo = repo;
     }
 
-    public List<Movimiento> listar() {
+    public List<Movimientos> listar() {
         return repo.findAll();
     }
 

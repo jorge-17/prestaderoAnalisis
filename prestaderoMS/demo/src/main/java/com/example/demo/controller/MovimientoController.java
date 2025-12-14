@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Movimiento;
+import com.example.demo.model.Movimientos;
 import com.example.demo.service.MovimientoService;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +18,7 @@ public class MovimientoController {
     }
 
     @GetMapping
-    public List<Movimiento> listar() {
+    public List<Movimientos> listar() {
         return service.listar();
     }
 

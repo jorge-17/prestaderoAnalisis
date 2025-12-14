@@ -12,9 +12,9 @@ services:
     ports:
       - "5432:5432"
 
-  backend:
+  demo:
     build:
-      context: ./backend
+      context: ./demo
     depends_on:
       - postgres
     ports:

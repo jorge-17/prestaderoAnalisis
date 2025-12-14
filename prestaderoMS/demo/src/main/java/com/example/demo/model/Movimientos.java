@@ -2,16 +2,17 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
 @Table(name = "movimientos")
-public class Movimiento {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Movimientos {
 
+    @Id
+    @Column(name = "autorizacion")
     private String Autorizacion;
-    private Date FeOperacion;
+    private Timestamp FeOperacion;
     private String Tipo;
     private Double Importe;
     private String Estatus;
@@ -20,8 +21,8 @@ public class Movimiento {
     private String NombreSolicitante;
 
 
-    public Movimiento() {}
-    public Movimiento(String Autorizacion, Date FeOperacion, String Tipo, Double Importe, String Estatus, String Referencia, Integer IdTipoMovimiento, String NombreSolicitante) {
+    public Movimientos() {}
+    public Movimientos(String Autorizacion, Timestamp FeOperacion, String Tipo, Double Importe, String Estatus, String Referencia, Integer IdTipoMovimiento, String NombreSolicitante) {
             this.Autorizacion = Autorizacion;
             this.FeOperacion = FeOperacion;
             this.Tipo = Tipo;
@@ -44,7 +45,7 @@ public class Movimiento {
         return FeOperacion;
     }
 
-    public void setFeOperacion(Date feOperacion) {
+    public void setFeOperacion(Timestamp feOperacion) {
         FeOperacion = feOperacion;
     }
 
