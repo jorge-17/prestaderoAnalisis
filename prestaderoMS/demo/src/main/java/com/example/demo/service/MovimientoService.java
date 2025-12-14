@@ -2,6 +2,8 @@ package com.example.demo.service;
 
 import com.example.demo.model.Movimientos;
 import com.example.demo.repository.MovimientoRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,8 +17,8 @@ public class MovimientoService {
         this.repo = repo;
     }
 
-    public List<Movimientos> listar() {
-        return repo.findAll();
+    public Page<Movimientos> listar(Pageable pageable) {
+        return repo.findAll(pageable);
     }
 
     /* Por el momento no se podran guardar movimientos nuevos desde el front
