@@ -3,7 +3,7 @@
 
 
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import sum, avg,col,first,when,udf,regexp_replace,to_timestamp,trim,split,when,size
+from pyspark.sql.functions import sum, avg,col,first,when,udf,regexp_replace,to_timestamp,trim,split,when,size, to_date
 from pyspark.sql.types import StringType, DoubleType, ArrayType
 import re,sys,json,time
 from helpers.getCredentials import getCredentialsUser
@@ -48,6 +48,7 @@ if arrCredential[2]:
 
     dfMovimientos = dfMovimientos.toDF(*nuevosNombresMov)
     dfMovimientos = dfMovimientos.withColumn('feoperacion', to_timestamp(col("feoperacion"), "dd/MM/yyyy HH:mm:ss"))
+    dfMovimientos = dfMovimientos.withColumn('femovimiento', to_date(col("feoperacion"), "yyyy-MM-dd"))
     dfMovimientos = dfMovimientos.withColumn('importeS', limpiarImpoUDF(col("importe")))
     dfMovimientos = dfMovimientos.withColumn('importe', col("importeS").cast(DoubleType())).drop("importeS")
     dfMovimientos = dfMovimientos.withColumn("nombre_usuario_solicitante",
