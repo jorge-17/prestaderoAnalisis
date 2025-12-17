@@ -1,22 +1,12 @@
 <h2>Movimientos</h2>
 
-<div *ngIf="cargando">Cargando...</div>
+<ng-container>
+  <ul>
+    <li *ngFor="let m of movimientos">
+      {{ m.autorizacion }} - {{ m.tipo }} - {{ m.importe }} - {{m.feOperacion}}
+    </li>
+  </ul>
+  
 
-<table *ngIf="!cargando" border="1" width="100%">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Tipo</th>
-      <th>Monto</th>
-      <th>Fecha</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let m of movimientos">
-      <td>{{ m.id }}</td>
-      <td>{{ m.tipo }}</td>
-      <td>{{ m.monto | currency:'MXN' }}</td>
-      <td>{{ m.fecha | date }}</td>
-    </tr>
-  </tbody>
-</table>
+</ng-container>   
+<app-movimientos-grafica [movimientos]="movimientos"> </app-movimientos-grafica>

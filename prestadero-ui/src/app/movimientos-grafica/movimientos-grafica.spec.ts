@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Movimientos } from './movimientos';
 
-describe('Movimientos', () => {
-  let component: Movimientos;
-  let fixture: ComponentFixture<Movimientos>;
+import { MovimientosGrafica } from './movimientos-grafica';
+
+describe('MovimientosGrafica', () => {
+  let component: MovimientosGrafica;
+  let fixture: ComponentFixture<MovimientosGrafica>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Movimientos]
+      imports: [MovimientosGrafica]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Movimientos);
+    fixture = TestBed.createComponent(MovimientosGrafica);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

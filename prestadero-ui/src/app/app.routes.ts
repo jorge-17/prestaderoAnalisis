@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MovimientosComponent } from './movimientos/movimientos';
+import { resolve } from 'path';
 
 export const routes: Routes = [
   { path: 'movimientos', component: MovimientosComponent },

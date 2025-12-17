@@ -3,10 +3,11 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 export interface Movimiento {
-  id: number;
-  tipo: string;
-  monto: number;
-  fecha: string;
+    autorizacion: string;
+    feOperacion: string;
+    tipo: string;
+    importe: number;
+    referencia: string;
 }
 
 @Injectable({

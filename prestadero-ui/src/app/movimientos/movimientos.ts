@@ -1,28 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { Movimiento, MovimientoService } from '../services/movimientos.service';
-import { BrowserModule } from "@angular/platform-browser";
+import { CommonModule } from '@angular/common';
+import { MovimientosGraficaComponent } from '../movimientos-grafica/movimientos-grafica';
 
 @Component({
   selector: 'app-movimientos',
   templateUrl: './movimientos.html',
-  imports: [BrowserModule]
+  standalone: true,
+  imports: [CommonModule, MovimientosGraficaComponent]
 })
 export class MovimientosComponent implements OnInit {
 
   movimientos: Movimiento[] = [];
-  cargando = true;
 
   constructor(private movimientoService: MovimientoService) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
+
     this.movimientoService.listar().subscribe({
       next: data => {
+        console.log('MOVIMIENTOS:', data);
         this.movimientos = data;
-        this.cargando = false;
       },
       error: err => {
         console.error(err);
-        this.cargando = false;
       }
     });
   }
