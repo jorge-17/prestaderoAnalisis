@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/movimientos")
-@CrossOrigin(origins = "*") // Para desarrollo. En producción limita orígenes.
+@CrossOrigin(origins = "http://localhost:4200") // Para desarrollo. En producción limita orígenes.
 public class MovimientoController {
 
     private final MovimientoService service;

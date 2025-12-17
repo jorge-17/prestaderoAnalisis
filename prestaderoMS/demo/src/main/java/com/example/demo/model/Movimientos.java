@@ -12,25 +12,25 @@ public class Movimientos {
     @Id
     @Column(name = "autorizacion")
     private String Autorizacion;
-    private Timestamp FeOperacion;
+    private Timestamp Feoperacion;
     private String Tipo;
     private Double Importe;
     private String Estatus;
     private String Referencia;
-    private Integer IdTipoMovimiento;
-    private String NombreSolicitante;
+    private Integer Idtipomovimiento;
+    private String Nombre_usuario_solicitante;
 
 
     public Movimientos() {}
-    public Movimientos(String Autorizacion, Timestamp FeOperacion, String Tipo, Double Importe, String Estatus, String Referencia, Integer IdTipoMovimiento, String NombreSolicitante) {
+    public Movimientos(String Autorizacion, Timestamp FeOperacion, String Tipo, Double Importe, String Estatus, String Referencia, Integer Idtipomovimiento, String Nombre_usuario_solicitante) {
             this.Autorizacion = Autorizacion;
-            this.FeOperacion = FeOperacion;
+            this.Feoperacion = FeOperacion;
             this.Tipo = Tipo;
             this.Importe = Importe;
             this.Estatus = Estatus;
             this.Referencia = Referencia;
-            this.IdTipoMovimiento = IdTipoMovimiento;
-            this.NombreSolicitante = NombreSolicitante;
+            this.Idtipomovimiento = Idtipomovimiento;
+            this.Nombre_usuario_solicitante = Nombre_usuario_solicitante;
         }
 
     public String getAutorizacion() {
@@ -42,11 +42,11 @@ public class Movimientos {
     }
 
     public Date getFeOperacion() {
-        return FeOperacion;
+        return Feoperacion;
     }
 
     public void setFeOperacion(Timestamp feOperacion) {
-        FeOperacion = feOperacion;
+        Feoperacion = feOperacion;
     }
 
     public String getTipo() {
@@ -81,19 +81,19 @@ public class Movimientos {
         Referencia = referencia;
     }
 
-    public Integer getIdTipoMovimiento() {
-        return IdTipoMovimiento;
+    public Integer getIdtipomovimiento() {
+        return Idtipomovimiento;
     }
 
-    public void setIdTipoMovimiento(Integer idTipoMovimiento) {
-        IdTipoMovimiento = idTipoMovimiento;
+    public void setIdtipomovimiento(Integer Idtipomovimiento) {
+        Idtipomovimiento = Idtipomovimiento;
     }
 
-    public String getNombreSolicitante() {
-        return NombreSolicitante;
+    public String getNombre_usuario_solicitante() {
+        return Nombre_usuario_solicitante;
     }
 
-    public void setNombreSolicitante(String nombreSolicitante) {
-        NombreSolicitante = nombreSolicitante;
+    public void setNombre_usuario_solicitante(String Nombre_usuario_solicitante) {
+        Nombre_usuario_solicitante = Nombre_usuario_solicitante;
     }
 }

@@ -17,8 +17,8 @@ public class MovimientoService {
         this.repo = repo;
     }
 
-    public Page<Movimientos> listar(Pageable pageable) {
-        return repo.findAll(pageable);
+    public List<Movimientos> listar() {
+        return repo.findAll();
     }
 
     /* Por el momento no se podran guardar movimientos nuevos desde el front
