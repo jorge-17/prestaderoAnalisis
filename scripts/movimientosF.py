@@ -8,8 +8,10 @@ from pyspark.sql.types import StringType, DoubleType, ArrayType
 import re,sys,json,time
 from helpers.getCredentials import getCredentialsUser
 from helpers.getDataframe import getDataframeBD, putDataframeDB
+import pandas as pd
 
 inicio = time.time()
+# python3 movimientosF.py {{{NombreArchivo}}} jrodarte
 if len(sys.argv) > 1:
     nombre = sys.argv[1]
     userNameInput = sys.argv[2]
@@ -19,9 +21,15 @@ else:
 arrCredential = getCredentialsUser(userNameInput)
 
 if arrCredential[2]:
-    ss = SparkSession.builder.config("spark.jars", "/home/jrodarte/postgresql-42.7.3.jar").getOrCreate()
+    ss = SparkSession.builder.config("spark.jars", "/home/jrodarte/jars/postgresql-42.7.3.jar").getOrCreate()
     print(f"Se van a procesar los movimientos de la siguiente fecha: {nombre}")
-    dfMovimientos = ss.read.format("csv").options(header='true', inferSchema='true', delimiter=',').load(f"/home/jrodarte/Proyectos/prestadero/documentos/movimientos{nombre}.csv")
+
+    df = pd.read_csv(f"/home/jrodarte/Proyectos/prestadero/documentos/movimientos{nombre}.csv")
+    df = df.replace(r'\n\s+', '', regex=True)
+    df = df.replace(r'\n\s+0', ' 0', regex=True)
+    df.to_csv(f"/home/jrodarte/Proyectos/prestadero/documentos/movimientos{nombre}Cln.csv", index=False)
+
+    dfMovimientos = ss.read.format("csv").options(header='true', inferSchema='true', delimiter=',').load(f"/home/jrodarte/Proyectos/prestadero/documentos/movimientos{nombre}Cln.csv")
 
     user = arrCredential[0]
     password = arrCredential[1]

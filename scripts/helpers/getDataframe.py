@@ -16,7 +16,7 @@ def getDataframeBD(userIn, passIn, objeto, ss):
 
     try:
         df = ss.read.format("jdbc") \
-            .option("url", "jdbc:postgresql://localhost:5432/postgres") \
+            .option("url", "jdbc:postgresql://localhost:5432/prestaderodb") \
             .option("dbtable", objectQuery) \
             .option("user", userIn) \
             .option("password", passIn) \
@@ -36,7 +36,7 @@ def putDataframeDB(userIn, passIn, objeto, df):
     try:
         df.write \
             .format("jdbc") \
-            .option("url", "jdbc:postgresql://localhost:5432/postgres") \
+            .option("url", "jdbc:postgresql://localhost:5432/prestaderodb") \
             .option("dbtable", objectQuery) \
             .option("user", userIn) \
             .option("password", passIn) \

@@ -1,3 +1,9 @@
 envDevGeorge/
 config/
 prestaderoMS/.idea/
+documentos/
+scripts/.venv
+
+*.ipynb
+
+scripts/helpers/__pycache__/
