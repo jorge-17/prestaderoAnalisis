@@ -3,6 +3,7 @@ config/
 prestaderoMS/.idea/
 documentos/
 scripts/.venv
+.vscode
 
 *.ipynb
 
